@@ -154,8 +154,8 @@ private:
         on_error_notification(rxu::error_ptr ep) : ep(ep) {
         }
         on_error_notification(const on_error_notification& o) : ep(o.ep) {}
-        on_error_notification(const on_error_notification&& o) : ep(std::move(o.ep)) {}
-        on_error_notification& operator=(on_error_notification o) { ep = std::move(o.ep); return *this; }
+        on_error_notification(on_error_notification&& o) : ep(std::move(o.ep)) {}
+        on_error_notification& operator=(const on_error_notification&) = delete;
         void out(std::ostream& os) const override {
             os << "on_error(";
             os << rxu::what(ep);
