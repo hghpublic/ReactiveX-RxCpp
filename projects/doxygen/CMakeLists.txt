@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
+cmake_minimum_required(VERSION 4.2 FATAL_ERROR)
 
 project(doxygen LANGUAGES C CXX)
 
@@ -125,6 +125,7 @@ if(DOXYGEN_FOUND)
         PUBLIC ${RX_SRC_DIR} ${RX_CATCH_DIR}
         )
     target_link_libraries(doxy_examples PRIVATE ${CMAKE_THREAD_LIBS_INIT})
+    set_target_properties(doxy_examples PROPERTIES FOLDER "Doxygen")
 
     # Target to execute examples and save their output
     add_custom_command(
@@ -139,4 +140,5 @@ if(DOXYGEN_FOUND)
         DEPENDS doxy_examples doxy_examples_output
         COMMENT "Generating documentation with Doxygen"
         VERBATIM)
+    set_target_properties(doc PROPERTIES FOLDER "Doxygen")
 endif()

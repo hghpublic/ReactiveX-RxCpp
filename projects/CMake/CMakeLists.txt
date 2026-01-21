@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
+cmake_minimum_required(VERSION 4.2 FATAL_ERROR)
 
 project(rxcpp VERSION 2.2.4 LANGUAGES C CXX)
 
@@ -11,11 +11,15 @@ get_filename_component(RXCPP_DIR "${RXCPP_DIR}" PATH)
 
 MESSAGE( STATUS "RXCPP_DIR: " ${RXCPP_DIR} )
 
-if (NOT ${RXCPP_DISABLE_TESTS_AND_EXAMPLES})
+if (BUILD_TESTS)
     add_subdirectory(${RXCPP_DIR}/Rx/v2/test ${CMAKE_CURRENT_BINARY_DIR}/test)
+endif (BUILD_TESTS)
 
+if (BUILD_DOXYGEN)
     add_subdirectory(${RXCPP_DIR}/projects/doxygen ${CMAKE_CURRENT_BINARY_DIR}/projects/doxygen)
+endif (BUILD_DOXYGEN)
 
+if (BUILD_EXAMPLES)
     set(EXAMPLES_DIR ${RXCPP_DIR}/Rx/v2/examples)
 
     add_subdirectory(${EXAMPLES_DIR}/cep ${CMAKE_CURRENT_BINARY_DIR}/examples/cep)
@@ -24,7 +28,7 @@ if (NOT ${RXCPP_DISABLE_TESTS_AND_EXAMPLES})
     add_subdirectory(${EXAMPLES_DIR}/println ${CMAKE_CURRENT_BINARY_DIR}/examples/println)
     add_subdirectory(${EXAMPLES_DIR}/pythagorian ${CMAKE_CURRENT_BINARY_DIR}/examples/pythagorian)
     add_subdirectory(${EXAMPLES_DIR}/tests ${CMAKE_CURRENT_BINARY_DIR}/examples/tests)
-endif ()
+endif (BUILD_EXAMPLES)
 
 # The list of RxCpp source files. Please add every new file to this list
 set(RX_SOURCES

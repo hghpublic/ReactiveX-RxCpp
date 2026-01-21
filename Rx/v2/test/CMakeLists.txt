@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.2 FATAL_ERROR)
+cmake_minimum_required(VERSION 4.2 FATAL_ERROR)
 
 project(rxcpp_test LANGUAGES C CXX)
 
@@ -113,7 +113,7 @@ target_include_directories(rxcppv2_test
     PUBLIC ${RX_SRC_DIR} ${RX_CATCH_DIR}
     )
 target_link_libraries(rxcppv2_test ${CMAKE_THREAD_LIBS_INIT})
-
+set_target_properties(rxcppv2_test PROPERTIES FOLDER "Tests")
 
 foreach(ONE_TEST_SOURCE ${TEST_SOURCES})
     get_filename_component(ONE_TEST_NAME "${ONE_TEST_SOURCE}" NAME)
@@ -130,6 +130,7 @@ foreach(ONE_TEST_SOURCE ${TEST_SOURCES})
     target_link_libraries(${ONE_TEST_FULL_NAME} ${CMAKE_THREAD_LIBS_INIT})
 
     add_test(NAME ${ONE_TEST_NAME} COMMAND ${ONE_TEST_FULL_NAME} ${TEST_COMMAND_ARGUMENTS})
+    set_target_properties(${ONE_TEST_FULL_NAME} PROPERTIES FOLDER "Tests")
 endforeach(ONE_TEST_SOURCE ${TEST_SOURCES})
 
 
