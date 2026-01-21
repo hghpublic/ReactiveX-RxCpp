@@ -64,7 +64,7 @@ int main()
     // recover lines of text from byte stream
     //
     
-    auto removespaces = [](string s){
+    [[maybe_unused]] auto removespaces = [](string s){
         s.erase(remove_if(s.begin(), s.end(), ::isspace), s.end());
         return s;
     };
@@ -92,7 +92,8 @@ int main()
                 return s.back() == '\r';
             }) |
         Rx::map([](const string&){return 0;});
-
+#if 0
+    // FIXME
     // group strings by line
     auto linewindows = strings |
         window_toggle(closes | start_with(0), [=](int){return closes;});
@@ -106,6 +107,6 @@ int main()
     // print result
     lines |
         subscribe<string>(println(cout));
-
+#endif
     return 0;
 }
