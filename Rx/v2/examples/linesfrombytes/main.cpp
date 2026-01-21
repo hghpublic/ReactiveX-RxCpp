@@ -24,6 +24,7 @@ using namespace Rx;
 
 #include <regex>
 #include <random>
+#include <iterator>
 using namespace std;
 using namespace std::chrono;
 
