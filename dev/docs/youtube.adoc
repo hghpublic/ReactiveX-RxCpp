@@ -1,0 +1,9 @@
+= YouTube
+
+== CppCast Episode 189: RxCpp and Executors with Kirk Shoop
+
+https://www.youtube.com/watch?v=j9kiGZa6-bs
+
+== CppCon 2016: Kirk Shoop “Algorithm Design For Values Distributed In Time"
+
+https://www.youtube.com/watch?v=FcQURwM806o
